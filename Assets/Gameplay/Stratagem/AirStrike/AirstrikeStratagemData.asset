@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5add49e098a304382486fce554e411, type: 3}
+  m_Name: AirstrikeStratagemData
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Stratagem.AirStrike.AirstrikeStratagemData
+  stratagemName: Air strike
+  stratagemPrefab: {fileID: 2488506228849780311, guid: 0269f8d378d22c04eac7f7aad0d4f2c9, type: 3}
+  inputPath: 00000000010000000200000003000000
+  decalPool: {fileID: 11400000, guid: c22fb2f2d7d308f4e809eec997f0f47f, type: 2}
+  spawnDistance: 400
+  timeToReachTarget: 4
+  explosionPool: {fileID: 11400000, guid: d6bbd8b15c82c134296aafa3dc75589d, type: 2}
+  explosions: 3
+  explosionDelay: 5.2
+  timeBetweenExplosions: 0.4
+  distanceBetweenExplosions: 5

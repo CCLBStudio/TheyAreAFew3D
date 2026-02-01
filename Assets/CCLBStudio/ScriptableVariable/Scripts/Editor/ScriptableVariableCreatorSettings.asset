@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75bbe84800b797446be639625e8a3291, type: 3}
+  m_Name: ScriptableVariableCreatorSettings
+  m_EditorClassIdentifier: 
+  saveAssetPath: \CCLBSutdio-Values\ScriptableVariables/
+  saveTypePath: \CCLBSutdio-Values\ScriptableVariables/Scripts/
+  simpleTypeTemplate: "using UnityEngine;\r\n\nnamespace CCLBStudio.ScriptableVariable.Scripts\r\n{\r\n   
+    [CreateAssetMenu(menuName = \"CCLBStudio/Scriptable Variable/Types/##CAPITALTYPE
+    Variable\")]\n    public class ##CAPITALTYPEVariable : ScriptableVariable<##TYPE>\r\n   
+    {\r\n    }\r\n}"
+  typeListTemplate: "using UnityEngine;\r\n\nnamespace CCLBStudio.ScriptableVariable.Scripts\r\n{\r\n   
+    [CreateAssetMenu(menuName = \"CCLBStudio/Scriptable Variable/Types/##CAPITALTYPE
+    List Variable\")]\n    public class ##CAPITALTYPEListVariable : ScriptableVariableList<##TYPE>\r\n   
+    {\r\n    }\r\n}"
+  componentSetterTemplate: "using UnityEngine;\r\n\r\nnamespace CCLBStudio.ScriptableVariable.Scripts\r\n{\r\n   
+    public class Scriptable##CAPITALTYPESetter : ScriptableComponentSetter<##TYPE>\r\n   
+    {\r\n    }\r\n}"

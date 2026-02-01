@@ -1,0 +1,82 @@
+OVDF v1.0
+Gameplay.Stratagem.AirStrike.AirstrikeStratagemData, Assembly-CSharp
+
+# $GhQFmzSFetGsQ2aEyEbX9s
+Position: $root:2
++ [Sirenix.OdinInspector.BoxGroupAttribute]
+	GroupName = "AircraftDecal"
+
+# $FyPxfjagkpQTPhDCZm7DoC
+Position: $GhQFmzSFetGsQ2aEyEbX9s:0
++ [Sirenix.OdinInspector.TitleGroupAttribute]
+	GroupName = "Aircraft Decal"
+	Alignment = Centered
+
+# $XcHQD5NyZkyUbdKUbMHXHd
+Position: $root:5
++ [Sirenix.OdinInspector.BoxGroupAttribute]
+	GroupName = "Explosion"
+
+# $KfLPaKhvuCfJvNjmNf2w3X
+Position: $XcHQD5NyZkyUbdKUbMHXHd:0
++ [Sirenix.OdinInspector.TitleGroupAttribute]
+	GroupName = "Explosion"
+	Alignment = Centered
+	Indent = False
+	BoldTitle = True
+	Subtitle = ""
+
+# $Btqm1dMtAZ3hrWzg1Wxj4P
+Position: $root:0
++ [Sirenix.OdinInspector.BoxGroupAttribute]
+	GroupName = "Stratagem"
+
+# $CLNrEfQw7YfQNP5MjKi31Z
+Position: $Btqm1dMtAZ3hrWzg1Wxj4P:0
++ [Sirenix.OdinInspector.TitleGroupAttribute]
+	GroupName = "Stratagem Infos"
+	Alignment = Centered
+
+# $EB5sMddupr3RCWT234gUVb
+Position: $root:1
++ [Sirenix.OdinInspector.BoxGroupAttribute]
+	GroupName = "Input Path"
+
+# $3FYoe9dzi3k2xhAGiW5zWR
+Position: $EB5sMddupr3RCWT234gUVb:1
++ [Sirenix.OdinInspector.TitleGroupAttribute]
+	GroupName = "Input path"
+	Alignment = Centered
+
+# spawnDistance
+Position: $FyPxfjagkpQTPhDCZm7DoC:1
+
+# timeToReachTarget
+Position: $FyPxfjagkpQTPhDCZm7DoC:2
+
+# distanceBetweenExplosions
+Position: $KfLPaKhvuCfJvNjmNf2w3X:4
+
+# timeBetweenExplosions
+Position: $KfLPaKhvuCfJvNjmNf2w3X:3
+
+# explosionDelay
+Position: $KfLPaKhvuCfJvNjmNf2w3X:2
+
+# explosions
+Position: $KfLPaKhvuCfJvNjmNf2w3X:1
+
+# explosionPool
+Position: $KfLPaKhvuCfJvNjmNf2w3X:0
+
+# stratagemName
+Position: $CLNrEfQw7YfQNP5MjKi31Z:0
+
+# stratagemPrefab
+Position: $CLNrEfQw7YfQNP5MjKi31Z:1
+
+# decalPool
+Position: $FyPxfjagkpQTPhDCZm7DoC:0
+
+# inputPath
+Position: $3FYoe9dzi3k2xhAGiW5zWR:0
