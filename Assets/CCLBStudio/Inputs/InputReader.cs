@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace CCLBStudio.Inputs
 {
@@ -40,11 +44,21 @@ namespace CCLBStudio.Inputs
             {
                 Init();
             }
+            
+            #if UNITY_EDITOR
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            #endif
+
         }
 
         private void OnDisable()
         {
             Clear();
+            
+            #if UNITY_EDITOR
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            #endif
         }
 
         public void Init()
@@ -310,5 +324,44 @@ namespace CCLBStudio.Inputs
             DisablePlayerInputs();
             DisableUiInputs();
         }
+
+        #region Editor
+
+#if UNITY_EDITOR
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            switch (state)
+            {
+                case PlayModeStateChange.ExitingEditMode:
+                    break;
+                case PlayModeStateChange.EnteredPlayMode:
+                    break;
+                case PlayModeStateChange.ExitingPlayMode:
+                    ResetAllUnityActions();
+                    break;
+                case PlayModeStateChange.EnteredEditMode:
+                    break;
+            }
+        }
+        
+        private void ResetAllUnityActions()
+        {
+            var fields = GetType().GetFields(
+                BindingFlags.Instance |
+                BindingFlags.Public |
+                BindingFlags.NonPublic
+            );
+            
+            foreach (var field in fields)
+            {
+                if (typeof(Delegate).IsAssignableFrom(field.FieldType))
+                {
+                    field.SetValue(this, null);
+                    Debug.Log("Reset field " + field.Name);
+                }
+            }
+        }
+#endif
+        #endregion
     }
 }

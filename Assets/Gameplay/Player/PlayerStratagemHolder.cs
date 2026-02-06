@@ -12,7 +12,7 @@ namespace Gameplay.Player
         public PlayerFacade Facade { get; set; }
         
         [SerializeField] private InputReader inputReader;
-        [SerializeField] private UnityEvent<IRuntimeStratagem> onStratagemRequest;
+        [SerializeField] private UnityEvent<IRuntimeStratagem> onStratagemRequested;
         
         private List<StratagemData> _availableStratagems = new();
         private readonly List<StratagemInputDirection> _currentInputPath = new();
@@ -60,7 +60,7 @@ namespace Gameplay.Player
 
             if (_selectedStratagem)
             {
-                
+                RequestStratagem();
             }
         }
 
@@ -88,9 +88,10 @@ namespace Gameplay.Player
 
         #region Stratagem Invoke
 
-        private void CallStratagem()
+        private void RequestStratagem()
         {
-            
+            Debug.Log($"Requested stratagem : {_selectedStratagem.name}");
+            onStratagemRequested?.Invoke(GetRuntimeStratagem(_selectedStratagem));
         }
 
         #endregion

@@ -11,6 +11,7 @@ public class TestPlayerMover : MonoBehaviour
     public float speed = 5f;
     
     private Vector3 _moveVector;
+    private int _frame = 0;
 
     private void Awake()
     {
@@ -27,13 +28,12 @@ public class TestPlayerMover : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbody.MovePosition(rigidbody.position + _moveVector * (speed * _moveVector.magnitude * Time.fixedDeltaTime));
+        _frame++;
         
         Vector3 localMove = transform.InverseTransformDirection(_moveVector);
 
         animator.SetFloat(InputX, localMove.x);
         animator.SetFloat(InputY, localMove.z);
-        // animator.SetFloat(InputX, _moveVector.x);
-        // animator.SetFloat(InputY, _moveVector.z);
     }
 
     private void Move(Vector2 input)
