@@ -7,7 +7,6 @@ namespace Gameplay.Stratagem.AirStrike
     {
         [SerializeField] private StratagemData defaultStratagem;
         [SerializeField] private Camera cam;
-        [SerializeField] private Transform player;
         
         private IRuntimeStratagem _airstrike;
 
@@ -46,7 +45,7 @@ namespace Gameplay.Stratagem.AirStrike
                 var ray = cam.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    var ctx = new DefaultStratagemLaunchContext(player.position, hit.point);
+                    var ctx = new DefaultStratagemLaunchContext(transform.position, hit.point);
                     _airstrike?.Launch(ctx);
                 }
             }

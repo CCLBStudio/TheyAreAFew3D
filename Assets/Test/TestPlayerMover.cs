@@ -5,13 +5,13 @@ public class TestPlayerMover : MonoBehaviour
 {
     private static readonly int InputX = Animator.StringToHash("InputX");
     private static readonly int InputY = Animator.StringToHash("InputY");
+    private static readonly int InputMagnitude = Animator.StringToHash("InputMagnitude");
     public InputReader inputReader;
     public Animator animator;
     public new Rigidbody rigidbody;
     public float speed = 5f;
     
     private Vector3 _moveVector;
-    private int _frame = 0;
 
     private void Awake()
     {
@@ -28,12 +28,12 @@ public class TestPlayerMover : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbody.MovePosition(rigidbody.position + _moveVector * (speed * _moveVector.magnitude * Time.fixedDeltaTime));
-        _frame++;
         
         Vector3 localMove = transform.InverseTransformDirection(_moveVector);
 
         animator.SetFloat(InputX, localMove.x);
         animator.SetFloat(InputY, localMove.z);
+        animator.SetFloat(InputMagnitude, localMove.magnitude);
     }
 
     private void Move(Vector2 input)

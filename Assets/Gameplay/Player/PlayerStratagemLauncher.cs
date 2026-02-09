@@ -20,7 +20,6 @@ namespace Gameplay.Player
 
         public void LaunchStratagem(IRuntimeStratagem stratagem)
         {
-            // throw ball
             stratagemCallers.RequestObjectAs<PlayerStratagemCaller>()
                 .At(throwOrigin.position)
                 .AlignWith(transform)
