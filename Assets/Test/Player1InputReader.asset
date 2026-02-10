@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f8503455be38749bb48274523d937a, type: 3}
   m_Name: Player1InputReader
   m_EditorClassIdentifier: Assembly-CSharp::CCLBStudio.Inputs.InputReader
-  autoInit: 0
+  autoInit: 1
   playerId: 0
+  hardResetOnPlaymodeEnter: 1

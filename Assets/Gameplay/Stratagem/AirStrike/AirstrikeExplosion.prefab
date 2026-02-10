@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad351b91de6fef24e9523afc2de53e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Stratagem.AirStrike.AirstrikeExplosionPooledObject
-  feedback: {fileID: -7643528978817992882}
 --- !u!114 &-7643528978817992882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +242,9 @@ MonoBehaviour:
   RestoreInitialValuesOnDisable: 0
   StopFeedbacksOnDisable: 0
   PlayCount: 0
+  MMF_ChannelMode: 0
+  MMF_Channel: 0
+  MMF_ChannelDefinition: {fileID: 0}
   references:
     version: 2
     RefIds:

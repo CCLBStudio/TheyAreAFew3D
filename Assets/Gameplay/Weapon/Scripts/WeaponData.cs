@@ -42,7 +42,7 @@ namespace Gameplay.Weapon
 
         public RuntimeWeapon Equip(IWeaponHolder holder)
         {
-            var weapon = Instantiate(weaponPrefab, holder.GetWeaponPivot());
+            var weapon = Instantiate(weaponPrefab, holder.GetWeaponPivot(this));
             bulletPool?.Initialize();
             casingPool?.Initialize();
             muzzlePool?.Initialize();
@@ -54,6 +54,6 @@ namespace Gameplay.Weapon
         }
         
         public RuntimeBullet RequestBullet() => bulletPool.RequestObjectAs<RuntimeBullet>();
-        public TimedPooledObject RequestMuzzle() => muzzlePool.RequestObjectAs<TimedPooledObject>();
+        public PooledParticleSystem RequestMuzzle() => muzzlePool.RequestObjectAs<PooledParticleSystem>();
     }
 }

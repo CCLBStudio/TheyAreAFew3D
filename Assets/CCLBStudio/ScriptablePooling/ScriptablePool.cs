@@ -170,7 +170,7 @@ namespace CCLBStudio.ScriptablePooling
         #if UNITY_EDITOR
         private void OnEnable()
         {
-            Debug.Log($"[{name}] ➜ Listening to playmode events");
+            //Debug.Log($"[{name}] ➜ Listening to playmode events");
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
@@ -186,16 +186,16 @@ namespace CCLBStudio.ScriptablePooling
             {
                 case PlayModeStateChange.ExitingEditMode:
                     _init = false;
-                    Debug.Log($"[{name}] ➜ Exiting edit mode");
+                    //Debug.Log($"[{name}] ➜ Exiting edit mode");
                     break;
                 case PlayModeStateChange.EnteredPlayMode:
-                    Debug.Log($"[{name}] ➜ Entering play mode");
+                    //Debug.Log($"[{name}] ➜ Entering play mode");
                     break;
                 case PlayModeStateChange.ExitingPlayMode:
-                    Debug.Log($"[{name}] ➜ Exiting play mode");
+                    //Debug.Log($"[{name}] ➜ Exiting play mode");
                     break;
                 case PlayModeStateChange.EnteredEditMode:
-                    Debug.Log($"[{name}] ➜ Entering edit mode");
+                    //Debug.Log($"[{name}] ➜ Entering edit mode");
                     break;
             }
         }

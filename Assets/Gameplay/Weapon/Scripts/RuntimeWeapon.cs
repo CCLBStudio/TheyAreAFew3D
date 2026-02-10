@@ -1,4 +1,4 @@
-using System;
+using CCLBStudio.ScriptablePooling;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,16 +8,17 @@ namespace Gameplay.Weapon
     {
         public float AttackSpeed => ComputeAttackSpeed();
     
-        [SerializeField] private Transform bulletOrigin;
-        [SerializeField] private Transform muzzleOrigin;
+        [SerializeField] protected Transform bulletOrigin;
+        [SerializeField] protected Transform muzzleOrigin;
         
-        private IWeaponHolder _holder;
+        protected IWeaponHolder holder;
+        protected WeaponData weaponData;
+
         private bool _init;
         private bool _shooting;
         private float _timer;
-        private WeaponData _weaponData;
 
-        private void Update()
+        protected virtual void Update()
         {
             if (_timer > 0f)
             {
@@ -33,25 +34,25 @@ namespace Gameplay.Weapon
             Shoot();
         }
 
-        public void Initialize(IWeaponHolder holder, WeaponData weaponData)
+        public virtual void Initialize(IWeaponHolder holder, WeaponData weaponData)
         {
-            _holder = holder;
-            _weaponData = weaponData;
+            this.holder = holder;
+            this.weaponData = weaponData;
 
             _init = true;
         }
 
-        public void StartShooting()
+        public virtual void StartShooting()
         {
             _shooting = true;
         }
 
-        public void StopShooting()
+        public virtual void StopShooting()
         {
             _shooting = false;
         }
 
-        private void Shoot()
+        protected virtual void Shoot()
         {
             _timer = 1f / ComputeAttackSpeed();
             
@@ -61,31 +62,30 @@ namespace Gameplay.Weapon
             }
         
             SpawnBullet();
-            //SpawnMuzzle();
         }
 
-        private void SpawnBullet()
+        protected void SpawnBullet()
         {
-            var bullet = _weaponData.RequestBullet();
+            var bullet = weaponData.RequestBullet();
             bullet.Initialize(this);
             bullet.transform.position = bulletOrigin.position;
             
             Vector3 euler = bulletOrigin.eulerAngles;
             euler.x = 0;
-            float dispersion = Random.Range(-_weaponData.Dispersion, _weaponData.Dispersion);
+            float dispersion = Random.Range(-weaponData.Dispersion, weaponData.Dispersion);
             Vector3 direction = ApplyRotation(euler, Vector3.up, dispersion);
             bullet.Direction = direction;
             bullet.transform.rotation = Quaternion.Euler(direction);
         }
 
-        private void SpawnMuzzle()
+        protected PooledParticleSystem SpawnMuzzle()
         {
-            var muzzle = _weaponData.RequestMuzzle();
-            Transform muzzleTransform = muzzle.transform;
-        
-            muzzleTransform.SetParent(muzzleOrigin);
-            muzzleTransform.localPosition = Vector3.zero;
-            muzzleTransform.localRotation = Quaternion.identity;
+            var muzzle = weaponData.RequestMuzzle()
+                .Parent(muzzleOrigin)
+                .AtLocal(Vector3.zero)
+                .WithLocalRot(Quaternion.identity);
+
+            return muzzle;
         }
 
         private Vector3 ApplyRotation(Vector3 direction, Vector3 axis, float angle)
@@ -93,9 +93,9 @@ namespace Gameplay.Weapon
             return Quaternion.AngleAxis(angle, axis) * direction;
         }
 
-        private float ComputeAttackSpeed() => _weaponData.AttackSpeed * _holder.GetAttackSpeedMultiplier();
-        public float ComputeAttackRange() => _weaponData.AttackRange * _holder.GetAttackRangeMultiplier();
-        public float ComputeBulletSpeed() => _weaponData.BulletSpeed * _holder.GetBulletSpeedMultiplier();
+        public float ComputeAttackSpeed() => weaponData.AttackSpeed * holder.GetAttackSpeedMultiplier();
+        public float ComputeAttackRange() => weaponData.AttackRange * holder.GetAttackRangeMultiplier();
+        public float ComputeBulletSpeed() => weaponData.BulletSpeed * holder.GetBulletSpeedMultiplier();
 
     }
 }

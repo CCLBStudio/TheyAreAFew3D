@@ -119,6 +119,12 @@
 		#endif
 	#endif
 
+	#if UNITY_VERSION >= 60050000
+		#ifndef MK_UNITY_6000_5_0_OR_NEWER
+			#define MK_UNITY_6000_5_0_OR_NEWER
+		#endif
+	#endif
+
 	#if defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2)
 		#ifndef MK_PROBE_VOLUMES
 			#define MK_PROBE_VOLUMES

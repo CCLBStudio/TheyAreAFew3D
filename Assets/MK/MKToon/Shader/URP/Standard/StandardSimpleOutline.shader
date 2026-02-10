@@ -465,6 +465,12 @@ Shader "MK/Toon/URP/Standard/Simple + Outline"
 				#endif
 			#endif
 
+			#ifdef MK_UNITY_6000_5_0_OR_NEWER
+				#if defined(UNITY_PLATFORM_META_QUEST)
+					#pragma multi_compile _ META_QUEST_LIGHTUNROLL
+				#endif
+			#endif
+
 			#pragma fragmentoption ARB_precision_hint_fastest
 			#pragma vertex ForwardVert
 			#pragma fragment ForwardFrag
@@ -1295,6 +1301,12 @@ Shader "MK/Toon/URP/Standard/Simple + Outline"
 				#endif
 			#endif
 
+			#ifdef MK_UNITY_6000_5_0_OR_NEWER
+				#if defined(UNITY_PLATFORM_META_QUEST)
+					#pragma multi_compile _ META_QUEST_LIGHTUNROLL
+				#endif
+			#endif
+
 			#pragma fragmentoption ARB_precision_hint_fastest
 			#pragma vertex ForwardVert
 			#pragma fragment ForwardFrag
@@ -2101,6 +2113,12 @@ Shader "MK/Toon/URP/Standard/Simple + Outline"
 
 			#if UNITY_VERSION >= 202220
 				#pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+			#endif
+
+			#ifdef MK_UNITY_6000_5_0_OR_NEWER
+				#if defined(UNITY_PLATFORM_META_QUEST)
+					#pragma multi_compile _ META_QUEST_LIGHTUNROLL
+				#endif
 			#endif
 
 			#pragma fragmentoption ARB_precision_hint_fastest

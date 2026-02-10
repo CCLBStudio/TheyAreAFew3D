@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using CCLBStudio.Facade;
+using CCLBStudio.ScriptableBehaviour;
 using CCLBStudio.ScriptableVariable.Scripts;
 using UnityEngine;
 
@@ -9,6 +11,7 @@ namespace Gameplay.Player
         public PlayerStratagemHolder StratagemHolder => GetBehaviour<PlayerStratagemHolder>();
         
         [SerializeField] private PlayerFacadeListVariable playerFacadeList;
+        [SerializeField] private List<ScriptableAction> onBeforeBehavioursInit;
 
         protected override void Awake()
         {

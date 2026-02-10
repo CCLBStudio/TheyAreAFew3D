@@ -17,6 +17,9 @@ namespace CCLBStudio.Inputs
     {
         [SerializeField] private bool autoInit = true;
         [SerializeField] private PlayerId playerId = PlayerId.Player1;
+
+        [Header("Editor Settings")] 
+        [SerializeField] private bool hardResetOnPlaymodeEnter = true;
     
         public event UnityAction<Vector2> MoveEvent;
         public event UnityAction<Vector2> AimEvent;
@@ -38,7 +41,7 @@ namespace CCLBStudio.Inputs
 
         private void OnEnable()
         {
-            Clear();
+            HardReset();
         
             if (autoInit)
             {
@@ -54,7 +57,7 @@ namespace CCLBStudio.Inputs
 
         private void OnDisable()
         {
-            Clear();
+            HardReset();
             
             #if UNITY_EDITOR
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
@@ -65,6 +68,7 @@ namespace CCLBStudio.Inputs
         {
             if (_playerInputs != null)
             {
+                Debug.Log($"Input reader {name} has some player controls. Aborting init.");
                 return;
             }
         
@@ -109,7 +113,7 @@ namespace CCLBStudio.Inputs
             }
         }
 
-        public void Clear()
+        private void Clear()
         {
             if (_playerInputs == null)
             {
@@ -122,6 +126,7 @@ namespace CCLBStudio.Inputs
 
         public void HardReset()
         {
+            Debug.Log($"Hard reset {name}");
             Clear();
             _globalInitPerformed = false;
             _playerInputs = null;
@@ -333,8 +338,16 @@ namespace CCLBStudio.Inputs
             switch (state)
             {
                 case PlayModeStateChange.ExitingEditMode:
+                    if(hardResetOnPlaymodeEnter)
+                    {
+                        HardReset();
+                    }
                     break;
                 case PlayModeStateChange.EnteredPlayMode:
+                    if (autoInit)
+                    {
+                        Init();
+                    }
                     break;
                 case PlayModeStateChange.ExitingPlayMode:
                     ResetAllUnityActions();
@@ -357,7 +370,7 @@ namespace CCLBStudio.Inputs
                 if (typeof(Delegate).IsAssignableFrom(field.FieldType))
                 {
                     field.SetValue(this, null);
-                    Debug.Log("Reset field " + field.Name);
+                    //Debug.Log("Reset field " + field.Name);
                 }
             }
         }

@@ -13,12 +13,6 @@ public class TestPlayerMover : MonoBehaviour
     
     private Vector3 _moveVector;
 
-    private void Awake()
-    {
-        inputReader.HardReset();
-        inputReader.Init();
-    }
-
     void Start()
     {
         inputReader.MoveEvent += Move;

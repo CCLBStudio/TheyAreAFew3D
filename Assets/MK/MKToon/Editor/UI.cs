@@ -439,7 +439,7 @@ namespace MK.Toon.Editor
         internal static readonly GUIContent goochDarkColor = new GUIContent
         (
             "Dark",
-            ""
+            "Dark areas will interpolate between the albedo (RGB) and the dark gooch (RGB). (Mainlight Only)"
         );
         internal static readonly GUIContent goochRemap = new GUIContent
         (
@@ -450,7 +450,7 @@ namespace MK.Toon.Editor
         (
             "Dark", 
             "Dark gooch colors are used for shadowed areas of the material. \n\n" +
-            "Dark areas will interpolate between the albedo (RGB) and the dark gooch (RGB)."
+            "Dark areas will interpolate between the albedo (RGB) and the dark gooch (RGB). (Mainlight Only)"
         );
         internal static readonly GUIContent goochDarkRemapFadeWithIndirect = new GUIContent
         (

@@ -408,7 +408,7 @@
 
 		#if defined(MK_URP_2020_2_Or_Newer) && defined(MK_LIT)
 			#if defined(SHADOWS_SHADOWMASK) && defined(LIGHTMAP_ON)
-				surfaceData.shadowMask = SAMPLE_SHADOWMASK(lightmapUV);
+				surfaceData.shadowMask = SAMPLE_SHADOWMASK(lightmapUV.xy);
 			#elif !defined (LIGHTMAP_ON)
 				surfaceData.shadowMask = unity_ProbesOcclusion;
 			#else

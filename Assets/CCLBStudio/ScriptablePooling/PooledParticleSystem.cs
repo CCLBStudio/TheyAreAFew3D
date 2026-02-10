@@ -1,63 +1,80 @@
-using CCLBStudio.ScriptablePooling;
+using CCLBStudio.GlobalUpdater;
 using UnityEngine;
 
-public class PooledParticleSystem : MonoBehaviour, IScriptablePooledObject
+namespace CCLBStudio.ScriptablePooling
 {
-    public Transform ObjectTransform => transform;
-    public ScriptablePool Pool { get; set; }
-
-    [SerializeField] private ParticleSystem system;
-
-    private bool _checkForRelease;
-    private Quaternion _initialRotation;
-
-    private void Update()
+    public class PooledParticleSystem : MonoBehaviour, IScriptablePooledObject, IUpdatable
     {
-        if (!_checkForRelease)
-        {
-            return;
-        }
+        public Transform ObjectTransform => transform;
+        public ScriptablePool Pool { get; set; }
 
-        if (!system.IsAlive())
-        {
-            Pool.ReleaseObject(this);
-        }
-    }
+        [SerializeField] private ParticleSystem system;
 
-    public void Play()
-    {
-        if (!system)
-        {
-            Pool.ReleaseObject(this);
-            return;
-        }
-
-        system.Play(true);
-        _checkForRelease = true;
-    }
+        private bool _checkForRelease;
+        private Quaternion _initialRotation;
     
-    public void OnObjectCreated()
-    {
-        if (!system)
+        public void Tick()
         {
-            system = GetComponent<ParticleSystem>();
-            if (!system)
+            if (!_checkForRelease)
             {
-                Debug.LogError("No particle system on objet !");
+                return;
+            }
+
+            if (!system.IsAlive())
+            {
+                Pool.ReleaseObject(this);
             }
         }
 
-        _initialRotation = transform.rotation;
-    }
+        public void Play()
+        {
+            if (!system)
+            {
+                Pool.ReleaseObject(this);
+                return;
+            }
 
-    public void OnObjectRequested()
-    {
-    }
+            system.Play(true);
+            _checkForRelease = true;
+        }
 
-    public void OnObjectReleased()
-    {
-        _checkForRelease = false;
-        transform.position = Vector3.zero;
-        transform.rotation = _initialRotation;
+        public void Stop(ParticleSystemStopBehavior stopBehavior = ParticleSystemStopBehavior.StopEmitting)
+        {
+            if (!system)
+            {
+                Pool.ReleaseObject(this);
+                return;
+            }
+
+            system.Stop(true, stopBehavior);
+        }
+    
+        public void OnObjectCreated()
+        {
+            if (!system)
+            {
+                system = GetComponent<ParticleSystem>();
+                if (!system)
+                {
+                    Debug.LogError("No particle system on objet !");
+                }
+            }
+
+            _initialRotation = transform.rotation;
+        }
+
+        public void OnObjectRequested()
+        {
+            GlobalUpdater.GlobalUpdater.RegisterUpdatable(this);
+        }
+
+        public void OnObjectReleased()
+        {
+            GlobalUpdater.GlobalUpdater.UnregisterUpdatable(this);
+        
+            _checkForRelease = false;
+            transform.position = Vector3.zero;
+            transform.rotation = _initialRotation;
+        }
     }
 }
