@@ -6,8 +6,6 @@ namespace Gameplay.Weapon
 {
     public class RuntimeWeapon : MonoBehaviour
     {
-        public float AttackSpeed => ComputeAttackSpeed();
-    
         [SerializeField] protected Transform bulletOrigin;
         [SerializeField] protected Transform muzzleOrigin;
         

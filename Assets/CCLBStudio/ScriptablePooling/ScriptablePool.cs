@@ -23,6 +23,8 @@ namespace CCLBStudio.ScriptablePooling
         [SerializeField] private bool disableObjectOnRelease = true;
         [Tooltip("If TRUE, automatically enable the pooled object when it is requested.")]
         [SerializeField] private bool enableObjectOnRequest = true;
+        [Tooltip("If TRUE, automatically set the gameObject parent to be the container on release.")]
+        [SerializeField] private bool setContainerAsChildParentOnRelease = true;
 
         [NonSerialized] private Transform _poolContainer;
         [NonSerialized] private bool _init;
@@ -161,6 +163,10 @@ namespace CCLBStudio.ScriptablePooling
             
             pooledObject.OnObjectReleased();
             obj.SetActive(!disableObjectOnRelease);
+            if (setContainerAsChildParentOnRelease)
+            {
+                pooledObject.ObjectTransform.SetParent(_poolContainer, true);
+            }
         }
 
         #endregion

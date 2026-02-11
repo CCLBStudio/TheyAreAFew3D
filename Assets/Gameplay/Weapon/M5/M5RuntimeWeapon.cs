@@ -9,6 +9,11 @@ namespace Gameplay.Weapon.M5
         {
             base.StartShooting();
             _muzzle = SpawnMuzzle();
+            if (_muzzle is IStatBasedParticleSystem p)
+            {
+                p.SetForStats(this);
+            }
+            _muzzle.Play();
         }
         
         public override void StopShooting()

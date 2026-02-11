@@ -108,7 +108,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 151692, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4101211095909422785}
+      addedObject: {fileID: 589215869099675239}
   m_SourcePrefab: {fileID: 100100000, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
 --- !u!4 &5076555840195429166 stripped
 Transform:
@@ -120,7 +120,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 151692, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
   m_PrefabInstance: {fileID: 5076555840195819514}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-4101211095909422785
+--- !u!114 &589215869099675239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5076555840195667830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb1ac734ced89642a7c5b34806f1c13, type: 3}
+  m_Script: {fileID: 11500000, guid: e5db368d7b7b2e24b9c677afe9477734, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Weapon.RuntimeWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Weapon.M5.M5RuntimeWeapon
   bulletOrigin: {fileID: 2025421791138651141}
   muzzleOrigin: {fileID: 2025421791138651141}

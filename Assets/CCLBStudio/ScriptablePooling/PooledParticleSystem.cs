@@ -26,7 +26,7 @@ namespace CCLBStudio.ScriptablePooling
             }
         }
 
-        public void Play()
+        public virtual void Play()
         {
             if (!system)
             {
@@ -38,7 +38,7 @@ namespace CCLBStudio.ScriptablePooling
             _checkForRelease = true;
         }
 
-        public void Stop(ParticleSystemStopBehavior stopBehavior = ParticleSystemStopBehavior.StopEmitting)
+        public virtual void Stop(ParticleSystemStopBehavior stopBehavior = ParticleSystemStopBehavior.StopEmitting)
         {
             if (!system)
             {
@@ -49,7 +49,7 @@ namespace CCLBStudio.ScriptablePooling
             system.Stop(true, stopBehavior);
         }
     
-        public void OnObjectCreated()
+        public virtual void OnObjectCreated()
         {
             if (!system)
             {
@@ -63,18 +63,30 @@ namespace CCLBStudio.ScriptablePooling
             _initialRotation = transform.rotation;
         }
 
-        public void OnObjectRequested()
+        public virtual void OnObjectRequested()
         {
             GlobalUpdater.GlobalUpdater.RegisterUpdatable(this);
         }
 
-        public void OnObjectReleased()
+        public virtual void OnObjectReleased()
         {
             GlobalUpdater.GlobalUpdater.UnregisterUpdatable(this);
         
             _checkForRelease = false;
             transform.position = Vector3.zero;
             transform.rotation = _initialRotation;
+        }
+
+        private void OnValidate()
+        {
+            if (!system)
+            {
+                system = GetComponentInChildren<ParticleSystem>();
+                if (!system)
+                {
+                    Debug.LogError("No particle system on objet !");
+                }
+            }
         }
     }
 }

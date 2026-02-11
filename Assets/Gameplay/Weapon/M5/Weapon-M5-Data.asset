@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7643ac51fbe1fb34692ffb69e5a2f0ff, type: 3}
   m_Name: Weapon-M5-Data
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Weapon.WeaponData
-  weaponPrefab: {fileID: -4101211095909422785, guid: d59d74610a9cb4b438638fadf3fa4332, type: 3}
+  weaponPrefab: {fileID: 589215869099675239, guid: d59d74610a9cb4b438638fadf3fa4332, type: 3}
   bulletPool: {fileID: 11400000, guid: d2686810b1f48f7478797925e13bfb20, type: 2}
   casingPool: {fileID: 0}
-  muzzlePool: {fileID: 0}
+  muzzlePool: {fileID: 11400000, guid: d7b355ef34d1e2f44a9162535865f6b3, type: 2}
   impactPool: {fileID: 0}
   attackDamages: 1
   attackSpeed: 5
